@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Redux V3.1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            color: #0f0;
+        }
+        
+        #gameContainer {
+            position: relative;
+        }
+        
+        canvas {
+            border: 2px solid #0f0;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        #soundToggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+        
+        #soundToggle:hover {
+            background: rgba(0, 255, 0, 0.4);
+            box-shadow: 0 0 15px #0f0;
+        }
+        
+        #gameOver {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border: 3px solid #0f0;
+            box-shadow: 0 0 30px #0f0;
+            text-align: center;
+            min-width: 400px;
+        }
+        
+        #gameOver h1 {
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            color: #f00;
+            text-shadow: 0 0 20px #f00;
+        }
+        
+        #gameOver p {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+        
+        #nameEntry {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ff0;
+            background: rgba(255, 255, 0, 0.1);
+        }
+        
+        #nameEntry h2 {
+            color: #ff0;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        #nameEntry p {
+            font-size: 16px;
+            color: #0ff;
+            margin-bottom: 15px;
+        }
+        
+        #nameInput {
+            background: #000;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-size: 32px;
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            width: 120px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+        }
+        
+        #nameInput:focus {
+            outline: none;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 0 10px #0f0;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #0ff;
+            box-shadow: 0 0 20px #0ff;
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 14px;
+            opacity: 0.7;
+            max-width: 1180px;
+        }
+        
+        .instruction-line {
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="ui">
+            <div>SCORE: <span id="score">0</span></div>
+            <div>LIVES: <span id="lives">3</span></div>
+            <div>LEVEL: <span id="level">1</span></div>
+            <div>SHIELDS: <span id="shields">100</span></div>
+        </div>
+        
+        <button id="soundToggle" onclick="toggleSound()" title="Toggle Sound (M key)">🔊</button>
+        
+        <div id="gameOver">
+            <h1>GAME OVER</h1>
+            <p>FINAL SCORE: <span id="finalScore">0</span></p>
+            
+            <div id="nameEntry" style="display: none;">
+                <h2>🏆 HIGH SCORE! 🏆</h2>
+                <p>Enter your name (3 characters):</p>
+                <input type="text" id="nameInput" maxlength="3" />
+                <br>
+                <button onclick="saveHighScore()">SAVE SCORE</button>
+            </div>
+            
+            <button id="restartButton" onclick="restartGame()">RESTART</button>
+            <br>
+            <button onclick="window.location.href='index.html'">MAIN MENU</button>
+        </div>
+        
+        <div id="instructions">
+            <div class="instruction-line">⬆️ THRUST | ⬅️➡️ ROTATE | SPACE SHOOT | SHIFT SHIELD | P PAUSE | M SOUND</div>
+            <div class="instruction-line">POWER-UPS: R=Rapid Fire | 3=Triple Shot | W=Spread | S=Shield | F=Speed | O=Ricochet | Ⓢ=Time Slow</div>
+            <div class="instruction-line">AUTO-ACTIVATE: 💣=Bomb | M=Cascade | L=Laser | D=Drones</div>
+            <div class="instruction-line" style="color: #ff6600;">⚠️ ASTEROIDS: Gray=Standard | Blue=Armored(3 hits) | Red=Fast | Yellow=Explosive | ☄️ METEORS after Level 3!</div>
+        </div>
+    </div>
+    
+    <script src="game-v3.1.js"></script>
+</body>
+</html>

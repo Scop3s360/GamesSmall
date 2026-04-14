@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Redux - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .splash-container {
+            text-align: center;
+            color: #00ff00;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+            50% { text-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #ffff00;
+        }
+
+        .start-button {
+            padding: 20px 50px;
+            font-size: 32px;
+            background: #00ff00;
+            border: 3px solid #00ff00;
+            color: #000;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .start-button:hover {
+            background: #000;
+            color: #00ff00;
+            box-shadow: 0 0 30px #00ff00;
+            transform: scale(1.1);
+        }
+
+        .features {
+            margin-top: 50px;
+            font-size: 18px;
+            line-height: 2;
+            color: #00ff00;
+            opacity: 0.8;
+        }
+
+        .features div {
+            margin: 10px 0;
+        }
+
+        .blink {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <h1>ASTEROIDS REDUX</h1>
+        <h2>Suped Up Edition</h2>
+        
+        <a href="index.html" class="start-button blink">START GAME</a>
+        
+        <div class="features">
+            <div>⚡ Power-ups & Upgrades</div>
+            <div>👾 Boss Battles</div>
+            <div>🎯 Combo System</div>
+            <div>🏆 Achievements</div>
+            <div>🎮 Classic Arcade Action</div>
+        </div>
+    </div>
+</body>
+</html>

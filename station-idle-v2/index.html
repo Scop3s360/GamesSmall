@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Idle V2</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game">
+        <!-- Sidebar Navigation -->
+        <div id="sidebar">
+            <h1>STATION<br>IDLE</h1>
+            <nav>
+                <button class="nav-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+                <button class="nav-btn" onclick="switchTab('inventory')">📦 Inventory</button>
+                <button class="nav-btn" onclick="switchTab('production')">🏭 Production</button>
+                <button class="nav-btn" onclick="switchTab('crew')">👥 Crew</button>
+                <button class="nav-btn" onclick="switchTab('station')">🏗️ Station</button>
+                <button class="nav-btn" onclick="switchTab('ship')">🚀 Ship</button>
+                <button class="nav-btn" onclick="switchTab('combat')">⚔️ Combat</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div id="content">
+            <header>
+                <h1>STATION IDLE</h1>
+                <p>Deep Space Station Alpha</p>
+            </header>
+
+            <div id="resources"></div>
+
+            <main>
+                <!-- DEBUG MENU - Remove this div and script tag below to disable -->
+                <div id="debug-menu" style="margin-bottom: 20px;"></div>
+                
+                <div id="dashboard" class="tab active">
+                    <h2>Station Overview</h2>
+                    <div id="main-production"></div>
+                </div>
+
+                <div id="inventory" class="tab">
+                    <h2>Resource Inventory</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <button class="btn" style="width: auto;" onclick="filterInventory('all')">All</button>
+                        <button class="btn" style="width: auto;" onclick="filterInventory('basic')">Basic</button>
+                        <button class="btn" style="width: auto;" onclick="filterInventory('advanced')">Advanced</button>
+                        <button class="btn" style="width: auto;" onclick="filterInventory('exotic')">Exotic</button>
+                        <button class="btn" style="width: auto;" onclick="filterInventory('mega')">Megastructure</button>
+                        <button class="btn" style="width: auto;" onclick="filterInventory('combat')">Combat</button>
+                    </div>
+                    <div id="inventory-grid" class="grid"></div>
+                </div>
+
+                <div id="production" class="tab">
+                    <h2>Production Recipes</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <button class="btn" style="width: auto;" onclick="filterProduction('all')">All</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('gathering')">Gathering</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('basic')">Basic Processing</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('advanced')">Advanced Materials</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('exotic')">Exotic Tech</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('mega')">Megastructures</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('ultimate')">Ultimate Systems</button>
+                        <button class="btn" style="width: auto;" onclick="filterProduction('combat')">Combat</button>
+                    </div>
+                    <div id="production-grid" class="grid"></div>
+                </div>
+
+                <div id="crew" class="tab">
+                    <h2>Crew Management</h2>
+                    <div id="crew-container"></div>
+                </div>
+
+                <div id="station" class="tab">
+                    <h2>Station Modules</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <button class="btn" style="width: auto;" onclick="filterStation('all')">All</button>
+                        <button class="btn" style="width: auto;" onclick="filterStation('basic')">Basic</button>
+                        <button class="btn" style="width: auto;" onclick="filterStation('advanced')">Advanced</button>
+                        <button class="btn" style="width: auto;" onclick="filterStation('exotic')">Exotic</button>
+                        <button class="btn" style="width: auto;" onclick="filterStation('mega')">Megastructure</button>
+                        <button class="btn" style="width: auto;" onclick="filterStation('combat')">Combat</button>
+                    </div>
+                    <div id="station-grid" class="grid"></div>
+                </div>
+
+                <div id="ship" class="tab">
+                    <h2>Ship Configuration</h2>
+                    <div id="ship-container"></div>
+                </div>
+
+                <div id="combat" class="tab">
+                    <h2>Combat Operations</h2>
+                    <div id="combat-container"></div>
+                </div>
+            </main>
+
+            <footer>
+                <button onclick="saveGame()">Save Game</button>
+                <button onclick="resetGame()">Reset Game</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script src="js/crew.js"></script>
+    <script src="js/crew-ui.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/ship-ui.js"></script>
+    <script src="js/combat-ui.js"></script>
+    <!-- DEBUG PROFILES - Comment out this line to disable debug menu -->
+    <script src="js/debug-profiles.js"></script>
+</body>
+</html>

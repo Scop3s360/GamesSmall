@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxqvhqxvqxvqx"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/grid_system.gd" id="2_grid"]
+[ext_resource type="Script" path="res://scripts/block_system.gd" id="3_block"]
+[ext_resource type="Script" path="res://scripts/combat_system.gd" id="4_combat"]
+[ext_resource type="Script" path="res://scripts/turret_system.gd" id="5_turret"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="GridSystem" type="Node2D" parent="."]
+script = ExtResource("2_grid")
+
+[node name="BlockSystem" type="Node" parent="."]
+script = ExtResource("3_block")
+
+[node name="CombatSystem" type="Node" parent="."]
+script = ExtResource("4_combat")
+
+[node name="TurretSystem" type="Node" parent="."]
+script = ExtResource("5_turret")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DebugLabel" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = -10.0
+text = "Defender - Debug Info"
+
+[node name="NextPieceLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+text = "Next Piece: "
+horizontal_alignment = 2
+
+[node name="ColorInfoLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 60.0
+offset_right = -10.0
+offset_bottom = 120.0
+text = "Color Info"
+horizontal_alignment = 2
+
+[node name="TurretUI" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -200.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="TurretStatsLabel" type="Label" parent="UI/TurretUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -100.0
+text = "Turret Stats"
+vertical_alignment = 1
+
+[node name="UpgradeButtons" type="VBoxContainer" parent="UI/TurretUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -90.0
+offset_right = 100.0
+offset_bottom = -10.0
+
+[node name="UpgradeDamageButton" type="Button" parent="UI/TurretUI/UpgradeButtons"]
+layout_mode = 2
+text = "Upgrade Damage (+5) - Cost: 10"
+
+[node name="UpgradeRangeButton" type="Button" parent="UI/TurretUI/UpgradeButtons"]
+layout_mode = 2
+text = "Upgrade Range (+32) - Cost: 10"
+
+[node name="UpgradeFireRateButton" type="Button" parent="UI/TurretUI/UpgradeButtons"]
+layout_mode = 2
+text = "Upgrade Fire Rate (+0.5) - Cost: 10"

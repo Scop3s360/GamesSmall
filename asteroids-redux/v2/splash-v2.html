@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Redux V2 - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .splash-container {
+            text-align: center;
+            color: #00ff00;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+            50% { text-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        h1 {
+            font-size: 72px;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffff00;
+        }
+
+        .version {
+            font-size: 18px;
+            color: #ff6600;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            padding: 20px 50px;
+            font-size: 32px;
+            background: #00ff00;
+            border: 3px solid #00ff00;
+            color: #000;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .start-button:hover {
+            background: #000;
+            color: #00ff00;
+            box-shadow: 0 0 30px #00ff00;
+            transform: scale(1.1);
+        }
+
+        .sound-toggle {
+            padding: 15px 30px;
+            font-size: 24px;
+            background: #ffff00;
+            border: 3px solid #ffff00;
+            color: #000;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .sound-toggle:hover {
+            background: #000;
+            color: #ffff00;
+            box-shadow: 0 0 30px #ffff00;
+        }
+
+        .sound-toggle.muted {
+            background: #ff0000;
+            border-color: #ff0000;
+            color: #fff;
+        }
+
+        .sound-toggle.muted:hover {
+            background: #000;
+            color: #ff0000;
+            box-shadow: 0 0 30px #ff0000;
+        }
+
+        .features {
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #00ff00;
+            opacity: 0.8;
+        }
+
+        .features div {
+            margin: 8px 0;
+        }
+
+        .new-feature {
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        .high-scores {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            display: inline-block;
+            min-width: 400px;
+        }
+
+        .high-scores h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffff00;
+        }
+
+        .score-entry {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 20px;
+            margin: 5px 0;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .score-entry:last-child {
+            border-bottom: none;
+        }
+
+        .score-rank {
+            color: #ffff00;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .score-name {
+            color: #00ffff;
+            margin-right: 20px;
+        }
+
+        .score-value {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .blink {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <h1>ASTEROIDS REDUX</h1>
+        <h2>Suped Up Edition</h2>
+        <div class="version">V2.0 - Enhanced Edition</div>
+        
+        <div class="controls">
+            <a href="index-v2.html" class="start-button blink">START GAME</a>
+            <button id="soundToggle" class="sound-toggle" onclick="toggleSound()">🔊 SOUND ON</button>
+        </div>
+        
+        <div class="high-scores" id="highScores">
+            <h3>🏆 HIGH SCORES 🏆</h3>
+            <div id="scoresList">
+                <div class="score-entry">
+                    <span class="score-rank">1.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">2.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">3.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">4.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">5.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="new-feature">⭐ NEW: 4 Asteroid Types (Standard/Armored/Fast/Explosive)</div>
+            <div class="new-feature">☄️ NEW: Meteors (Level 3+) with Warning System</div>
+            <div class="new-feature">🎯 NEW: Improved Spawning from Screen Edges</div>
+            <div>⚡ Power-ups & Upgrades</div>
+            <div>👾 Boss Battles Every 5 Levels</div>
+            <div>🎯 Combo System with Multipliers</div>
+            <div>🏆 Achievement System</div>
+            <div>🎮 Classic Arcade Action</div>
+        </div>
+    </div>
+
+    <script>
+        // Load high scores
+        function loadHighScores() {
+            const scores = JSON.parse(localStorage.getItem('asteroidsHighScores') || '[]');
+            const scoresList = document.getElementById('scoresList');
+            
+            if (scores.length > 0) {
+                scoresList.innerHTML = '';
+                scores.slice(0, 5).forEach((score, index) => {
+                    const entry = document.createElement('div');
+                    entry.className = 'score-entry';
+                    entry.innerHTML = `
+                        <span class="score-rank">${index + 1}.</span>
+                        <span class="score-name">${score.name}</span>
+                        <span class="score-value">${score.score.toLocaleString()}</span>
+                    `;
+                    scoresList.appendChild(entry);
+                });
+            }
+        }
+
+        // Load sound preference
+        function loadSoundPreference() {
+            const soundEnabled = localStorage.getItem('asteroidsSoundEnabled') !== 'false';
+            const button = document.getElementById('soundToggle');
+            
+            if (soundEnabled) {
+                button.textContent = '🔊 SOUND ON';
+                button.classList.remove('muted');
+            } else {
+                button.textContent = '🔇 SOUND OFF';
+                button.classList.add('muted');
+            }
+        }
+
+        // Toggle sound
+        function toggleSound() {
+            const button = document.getElementById('soundToggle');
+            const currentState = localStorage.getItem('asteroidsSoundEnabled') !== 'false';
+            const newState = !currentState;
+            
+            localStorage.setItem('asteroidsSoundEnabled', newState);
+            
+            if (newState) {
+                button.textContent = '🔊 SOUND ON';
+                button.classList.remove('muted');
+            } else {
+                button.textContent = '🔇 SOUND OFF';
+                button.classList.add('muted');
+            }
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            loadHighScores();
+            loadSoundPreference();
+        };
+    </script>
+</body>
+</html>

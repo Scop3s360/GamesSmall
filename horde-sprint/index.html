@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horde Sprint - Main Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffd6e8 0%, #c3b1e1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .splash-container {
+            text-align: center;
+            color: #2d3436;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 72px;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            color: #a8e6cf;
+            text-shadow: 3px 3px 0 #81c784;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffb3ba;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #2d3436;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .start-button {
+            padding: 20px 50px;
+            font-size: 32px;
+            background: #a8e6cf;
+            border: 3px solid #81c784;
+            color: #2d3436;
+            cursor: pointer;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        .start-button:hover {
+            background: #81c784;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .guide-button {
+            background: #ffd6a5;
+            border-color: #ffb87a;
+            font-size: 20px;
+            padding: 12px 30px;
+        }
+
+        .guide-button:hover {
+            background: #ffb87a;
+        }
+
+        .blink {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .high-scores {
+            margin-top: 30px;
+            padding: 20px;
+            border: 3px solid #b8d4f1;
+            background: rgba(184, 212, 241, 0.3);
+            display: inline-block;
+            min-width: 400px;
+            border-radius: 15px;
+        }
+
+        .high-scores h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2d3436;
+        }
+
+        .score-entry {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 20px;
+            margin: 5px 0;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+        }
+
+        .score-rank {
+            color: #ffb3ba;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .score-name {
+            color: #2d3436;
+            margin-right: 20px;
+        }
+
+        .score-value {
+            color: #a8e6cf;
+            font-weight: bold;
+        }
+
+        .features {
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #2d3436;
+        }
+
+        .features div {
+            margin: 8px 0;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <h1>HORDE SPRINT</h1>
+        <h2>Build Your Army, Defeat the Horde</h2>
+        <div class="tagline">"The game from those fake ads - but actually real!"</div>
+        
+        <div class="controls">
+            <a href="guide.html" class="start-button guide-button">📖 GAME GUIDE</a>
+            <a href="game.html" class="start-button blink">▶ START GAME</a>
+        </div>
+        
+        <div class="high-scores" id="highScores">
+            <h3>🏆 HIGH SCORES 🏆</h3>
+            <div id="scoresList">
+                <div class="score-entry">
+                    <span class="score-rank">1.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">2.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">3.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">4.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+                <div class="score-entry">
+                    <span class="score-rank">5.</span>
+                    <span class="score-name">---</span>
+                    <span class="score-value">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div>⚔️ Auto-Runner Combat Action</div>
+            <div>🎯 3-Lane Strategic Gameplay</div>
+            <div>💪 Build Your Army - Collect Troops</div>
+            <div>🔫 4 Unique Weapons to Unlock</div>
+            <div>👾 Face Waves of Enemies</div>
+            <div>🐉 Epic Boss Battles</div>
+            <div>📈 Progressive Difficulty</div>
+        </div>
+    </div>
+
+    <script>
+        // Load high scores
+        function loadHighScores() {
+            const scores = JSON.parse(localStorage.getItem('hordeSprintHighScores') || '[]');
+            const scoresList = document.getElementById('scoresList');
+            
+            if (scores.length > 0) {
+                scoresList.innerHTML = '';
+                scores.slice(0, 5).forEach((score, index) => {
+                    const entry = document.createElement('div');
+                    entry.className = 'score-entry';
+                    entry.innerHTML = `
+                        <span class="score-rank">${index + 1}.</span>
+                        <span class="score-name">${score.name}</span>
+                        <span class="score-value">${score.score.toLocaleString()}</span>
+                    `;
+                    scoresList.appendChild(entry);
+                });
+            }
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            loadHighScores();
+        };
+    </script>
+</body>
+</html>

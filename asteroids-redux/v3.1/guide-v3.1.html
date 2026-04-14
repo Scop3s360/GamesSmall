@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Redux V3.1 - Game Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #00ff00;
+            color: #00ff00;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #ffff00;
+            text-shadow: 0 0 15px #ffff00;
+            border-bottom: 2px solid #ffff00;
+            padding-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.05);
+            border-left: 4px solid #00ff00;
+        }
+
+        .item-icon {
+            font-size: 36px;
+            margin-right: 20px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .asteroid-standard { color: #888; }
+        .asteroid-armored { color: #4488ff; }
+        .asteroid-fast { color: #ff6600; }
+        .asteroid-explosive { color: #ffff00; }
+
+        .powerup-rapid { color: #ffff00; }
+        .powerup-triple { color: #ff00ff; }
+        .powerup-spread { color: #00ff99; }
+        .powerup-shield { color: #00ff00; }
+        .powerup-speed { color: #ff00ff; }
+        .powerup-ricochet { color: #ff9900; }
+        .powerup-timeslow { color: #9966ff; }
+        .powerup-bomb { color: #ff6600; }
+        .powerup-cascade { color: #ff0099; }
+        .powerup-laser { color: #ff0000; }
+        .powerup-minions { color: #00ccff; }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 24px;
+            background: #00ff00;
+            border: 3px solid #00ff00;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #000;
+            color: #00ff00;
+            box-shadow: 0 0 30px #00ff00;
+        }
+
+        .controls {
+            background: rgba(255, 255, 0, 0.1);
+            border: 2px solid #ffff00;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .controls h3 {
+            color: #ffff00;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .control-item {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .key {
+            display: inline-block;
+            background: #ffff00;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 GAME GUIDE 🎮</h1>
+
+        <div class="controls">
+            <h3>⌨️ CONTROLS</h3>
+            <div class="control-item"><span class="key">↑</span> Thrust Forward</div>
+            <div class="control-item"><span class="key">←</span> <span class="key">→</span> Rotate Ship</div>
+            <div class="control-item"><span class="key">SPACE</span> Fire Weapon</div>
+            <div class="control-item"><span class="key">SHIFT</span> Activate Shield (drains shield energy)</div>
+        </div>
+
+        <div class="section">
+            <h2>☄️ ASTEROID TYPES</h2>
+            
+            <div class="item">
+                <div class="item-icon asteroid-standard">●</div>
+                <div class="item-content">
+                    <div class="item-name asteroid-standard">STANDARD ASTEROID</div>
+                    <div class="item-description">Basic gray asteroid. 1 hit to destroy. Normal speed. Splits into 2 smaller asteroids.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon asteroid-armored">●</div>
+                <div class="item-content">
+                    <div class="item-name asteroid-armored">ARMORED ASTEROID</div>
+                    <div class="item-description">Blue reinforced asteroid. Requires 4 hits to destroy. Slower but tougher. Worth 4x points. Shows remaining health.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon asteroid-fast">●</div>
+                <div class="item-content">
+                    <div class="item-name asteroid-fast">FAST ASTEROID</div>
+                    <div class="item-description">Orange high-speed asteroid. 1 hit to destroy. Moves 2.5x faster than standard. Worth 2x points.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon asteroid-explosive">●</div>
+                <div class="item-content">
+                    <div class="item-name asteroid-explosive">EXPLOSIVE ASTEROID</div>
+                    <div class="item-description">Yellow volatile asteroid. 1 hit to destroy. Creates shockwave that damages nearby asteroids. Worth 2x points.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚡ POWER-UPS (12 seconds duration)</h2>
+            
+            <div class="item">
+                <div class="item-icon powerup-rapid">R</div>
+                <div class="item-content">
+                    <div class="item-name powerup-rapid">RAPID FIRE</div>
+                    <div class="item-description">Doubles your fire rate. Unleash a barrage of bullets!</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-triple">3</div>
+                <div class="item-content">
+                    <div class="item-name powerup-triple">TRIPLE SHOT</div>
+                    <div class="item-description">Fire 3 bullets at once in a spread pattern.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-spread">W</div>
+                <div class="item-content">
+                    <div class="item-name powerup-spread">SPREAD SHOT</div>
+                    <div class="item-description">Fire 5 bullets in a wide spread. Maximum coverage!</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-shield">S</div>
+                <div class="item-content">
+                    <div class="item-name powerup-shield">SHIELD RECHARGE</div>
+                    <div class="item-description">Instantly restores your shield to maximum. Hold SHIFT to activate shield.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-speed">F</div>
+                <div class="item-content">
+                    <div class="item-name powerup-speed">SPEED BOOST</div>
+                    <div class="item-description">Doubles your ship's acceleration and max speed. Ship turns magenta.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-ricochet">O</div>
+                <div class="item-content">
+                    <div class="item-name powerup-ricochet">RICOCHET BULLETS</div>
+                    <div class="item-description">Your bullets bounce off screen edges 3 times. Orange bullets.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-timeslow">Ⓢ</div>
+                <div class="item-content">
+                    <div class="item-name powerup-timeslow">TIME SLOW</div>
+                    <div class="item-description">Slows down all enemies by 50%. Purple screen tint.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-bomb">💣</div>
+                <div class="item-content">
+                    <div class="item-name powerup-bomb">SMART BOMB</div>
+                    <div class="item-description">Instant use! Destroys all asteroids on screen. Screen-clearing devastation!</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-cascade">M</div>
+                <div class="item-content">
+                    <div class="item-name powerup-cascade">CASCADE MISSILE</div>
+                    <div class="item-description">Instant use! Fires 20 missiles in all directions.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-laser">L</div>
+                <div class="item-content">
+                    <div class="item-name powerup-laser">LASER BEAM</div>
+                    <div class="item-description">Instant use! Fires a devastating beam that destroys everything in its path.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon powerup-minions">D</div>
+                <div class="item-content">
+                    <div class="item-name powerup-minions">DRONE MINIONS</div>
+                    <div class="item-description">Instant use! Spawns 2 helper drones that follow and protect you.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 GAME MECHANICS</h2>
+            
+            <div class="item">
+                <div class="item-icon">🔥</div>
+                <div class="item-content">
+                    <div class="item-name">COMBO SYSTEM</div>
+                    <div class="item-description">Destroy asteroids quickly (within 2 seconds) to build combos. Higher combos = more points! Multipliers: 1x, 1.5x, 2x, 2.5x, 3x, 4x, 5x</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon">☄️</div>
+                <div class="item-content">
+                    <div class="item-name">METEORS (Level 3+)</div>
+                    <div class="item-description">Fast-moving meteors appear with red warning triangles. They travel in straight lines from screen edges. Worth 50 points.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon">👾</div>
+                <div class="item-content">
+                    <div class="item-name">UFO ALIENS</div>
+                    <div class="item-description">Flying saucers that shoot at you. Destroy them for 100 points and possible power-up drops.</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon">👹</div>
+                <div class="item-content">
+                    <div class="item-name">BOSS BATTLES (Every 5 Levels)</div>
+                    <div class="item-description">Massive boss with 50 health appears every 5 levels. Defeat it for huge points and guaranteed power-ups!</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-icon">💎</div>
+                <div class="item-content">
+                    <div class="item-name">COLLECTIBLES</div>
+                    <div class="item-description">Small cyan gems worth 50 points. Appear when asteroids are destroyed. Last 6.67 seconds.</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="splash-v3.1.html" class="back-button">← BACK TO MENU</a>
+        </div>
+    </div>
+</body>
+</html>

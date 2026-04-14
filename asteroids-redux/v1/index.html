@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Redux - Suped Up Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+            border: 3px solid #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        canvas {
+            display: block;
+            background: transparent;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ff00;
+            font-size: 18px;
+            text-shadow: 0 0 10px #00ff00;
+            pointer-events: none;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ff0000;
+            font-size: 48px;
+            text-shadow: 0 0 20px #ff0000;
+            display: none;
+        }
+
+        #gameOver button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 24px;
+            background: #00ff00;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            text-shadow: none;
+            pointer-events: all;
+        }
+
+        #gameOver button:hover {
+            background: #00cc00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff00;
+            font-size: 14px;
+            text-align: center;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui">
+            <div>SCORE: <span id="score">0</span></div>
+            <div>LIVES: <span id="lives">3</span></div>
+            <div>LEVEL: <span id="level">1</span></div>
+            <div>SHIELDS: <span id="shields">100</span>%</div>
+            <div id="comboDisplay" style="color: #ffff00; font-size: 20px; margin-top: 10px;"></div>
+        </div>
+        <div id="gameOver">
+            <div>GAME OVER</div>
+            <div style="font-size: 24px; margin-top: 10px;">FINAL SCORE: <span id="finalScore">0</span></div>
+            <button onclick="restartGame()">PLAY AGAIN</button>
+        </div>
+        <div id="instructions">
+            ARROW KEYS: Move | SPACE: Shoot | SHIFT: Shield | P: Pause
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

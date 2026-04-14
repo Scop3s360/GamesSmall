@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horde Sprint - Game Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffd6e8 0%, #c3b1e1 100%);
+            color: #2d3436;
+            font-family: 'Arial', sans-serif;
+            padding: 40px;
+            line-height: 1.6;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #a8e6cf;
+            text-shadow: 2px 2px 0 #81c784;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #ffb3ba;
+            border-bottom: 3px solid #ffb3ba;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #b8d4f1;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .controls {
+            background: rgba(168, 230, 207, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #a8e6cf;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .control-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #a8e6cf;
+        }
+
+        .control-key {
+            font-weight: bold;
+            color: #a8e6cf;
+            font-size: 20px;
+        }
+
+        .enemy-grid, .weapon-grid, .collectible-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .item-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 3px solid;
+            text-align: center;
+        }
+
+        .enemy-card { border-color: #ffb3ba; }
+        .weapon-card { border-color: #b8d4f1; }
+        .collectible-card { border-color: #ffd6a5; }
+
+        .item-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .item-desc {
+            font-size: 14px;
+            color: #636e72;
+        }
+
+        .tip {
+            background: rgba(255, 214, 165, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ffd6a5;
+        }
+
+        .tip strong {
+            color: #ffb87a;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #a8e6cf;
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 30px;
+            transition: all 0.3s;
+            border: 3px solid #81c784;
+        }
+
+        .back-button:hover {
+            background: #81c784;
+            transform: scale(1.05);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 HORDE SPRINT</h1>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 30px; font-style: italic;">
+            Build Your Army, Defeat the Horde!
+        </p>
+
+        <div class="section">
+            <h2>📖 How to Play</h2>
+            <p>
+                You're an auto-running commander building an army to defeat waves of enemies! 
+                Switch between 3 lanes to collect troops, fight enemies, and upgrade your weapons. 
+                Survive as long as possible and defeat bosses to progress through stages!
+            </p>
+        </div>
+
+        <div class="controls">
+            <h3>🎮 Controls</h3>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <div class="control-key">← / A</div>
+                    <div>Switch to Upper Lane</div>
+                </div>
+                <div class="control-item">
+                    <div class="control-key">→ / D</div>
+                    <div>Switch to Lower Lane</div>
+                </div>
+                <div class="control-item">
+                    <div class="control-key">SPACE</div>
+                    <div>Pause Game</div>
+                </div>
+                <div class="control-item">
+                    <div class="control-key">AUTO</div>
+                    <div>Shooting is Automatic!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 The Three Lanes</h2>
+            <h3>Top Lane - Collect Troops</h3>
+            <p>Gather soldiers to grow your army. More troops = more firepower!</p>
+            
+            <h3>Middle Lane - Combat Zone</h3>
+            <p>Your troops automatically shoot enemies here. Stay in this lane to fight!</p>
+            
+            <h3>Bottom Lane - Weapon Upgrades</h3>
+            <p>Collect powerful weapons to increase your damage output.</p>
+        </div>
+
+        <div class="section">
+            <h2>💎 Collectibles</h2>
+            <div class="collectible-grid">
+                <div class="item-card collectible-card">
+                    <div class="item-icon">🟦</div>
+                    <div class="item-name">Troops</div>
+                    <div class="item-desc">+1, +5, +10, or +20 soldiers</div>
+                </div>
+                <div class="item-card collectible-card">
+                    <div class="item-icon">🔶</div>
+                    <div class="item-name">Multipliers</div>
+                    <div class="item-desc">x2 or x3 your current troops!</div>
+                </div>
+                <div class="item-card collectible-card">
+                    <div class="item-icon">⚡</div>
+                    <div class="item-name">Weapons</div>
+                    <div class="item-desc">Upgrade your firepower</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔫 Weapons</h2>
+            <div class="weapon-grid">
+                <div class="item-card weapon-card">
+                    <div class="item-icon">🔫</div>
+                    <div class="item-name">Rifle</div>
+                    <div class="item-desc">1 damage, balanced fire rate</div>
+                </div>
+                <div class="item-card weapon-card">
+                    <div class="item-icon">🔥</div>
+                    <div class="item-name">Machine Gun</div>
+                    <div class="item-desc">2 damage, rapid fire</div>
+                </div>
+                <div class="item-card weapon-card">
+                    <div class="item-icon">🚀</div>
+                    <div class="item-name">Rocket</div>
+                    <div class="item-desc">5 damage, slower but powerful</div>
+                </div>
+                <div class="item-card weapon-card">
+                    <div class="item-icon">✨</div>
+                    <div class="item-name">Laser</div>
+                    <div class="item-desc">3 damage, very fast</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👾 Enemies</h2>
+            <div class="enemy-grid">
+                <div class="item-card enemy-card">
+                    <div class="item-icon">👤</div>
+                    <div class="item-name">Grunt</div>
+                    <div class="item-desc">10 HP, slow, common</div>
+                </div>
+                <div class="item-card enemy-card">
+                    <div class="item-icon">🐝</div>
+                    <div class="item-name">Swarm</div>
+                    <div class="item-desc">5 HP, fast, comes in groups</div>
+                </div>
+                <div class="item-card enemy-card">
+                    <div class="item-icon">🛡️</div>
+                    <div class="item-name">Tank</div>
+                    <div class="item-desc">50 HP, slow, bullet sponge</div>
+                </div>
+                <div class="item-card enemy-card">
+                    <div class="item-icon">🐉</div>
+                    <div class="item-name">Boss</div>
+                    <div class="item-desc">200 HP, appears at stage end</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Strategy Tips</h2>
+            <div class="tip">
+                <strong>💡 Tip 1:</strong> Prioritize multipliers when you have a decent troop count. 
+                A x2 multiplier on 50 troops is better than collecting +10!
+            </div>
+            <div class="tip">
+                <strong>💡 Tip 2:</strong> Stay in the middle lane when enemies appear. 
+                Your troops only shoot when you're in the combat zone!
+            </div>
+            <div class="tip">
+                <strong>💡 Tip 3:</strong> Upgrade weapons early. Better weapons mean you need 
+                fewer troops to defeat enemies.
+            </div>
+            <div class="tip">
+                <strong>💡 Tip 4:</strong> Watch your troop count! If enemies reach you, 
+                you'll lose soldiers. Keep your army strong!
+            </div>
+            <div class="tip">
+                <strong>💡 Tip 5:</strong> Boss battles require preparation. Make sure you have 
+                plenty of troops and a good weapon before the stage ends!
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 Scoring</h2>
+            <ul>
+                <li>Defeat enemies to earn points</li>
+                <li>Bigger enemies = more points</li>
+                <li>Bosses give massive score bonuses</li>
+                <li>Survive longer to reach higher stages</li>
+                <li>Your final score is based on enemies defeated and distance traveled</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>⚠️ Game Over</h2>
+            <p>You lose when:</p>
+            <ul>
+                <li>Your troop count reaches 0</li>
+                <li>Your health reaches 0 (enemies that reach you deal damage)</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <strong>Keep your army strong and defeat enemies before they reach you!</strong>
+            </p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← BACK TO MENU</a>
+            <a href="game.html" class="back-button" style="background: #ffb3ba; border-color: #ff8a94;">▶ PLAY NOW</a>
+        </div>
+    </div>
+</body>
+</html>

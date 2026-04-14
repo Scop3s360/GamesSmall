@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship Preview - Station Idle V2</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0ff;
+            padding: 20px;
+        }
+        h1, h2 { color: #f0f; }
+        .ship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .ship-card {
+            background: rgba(0,255,255,0.1);
+            border: 2px solid #0ff;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        canvas {
+            background: #111;
+            border: 1px solid #0ff;
+            image-rendering: pixelated;
+            margin: 10px 0;
+        }
+        .label {
+            color: #0f0;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Ship Graphics Preview</h1>
+    <p>64x64 pixel Canvas-based renders - Modular Equipment System</p>
+
+    <h2>Ship Hull Types (Empty - No Equipment)</h2>
+    <p style="font-size: 0.9em; opacity: 0.8;">Different hull sizes with varying equipment slot counts</p>
+    <div class="ship-grid" id="hull-types"></div>
+
+    <h2>Equipment Examples (Fighter Hull)</h2>
+    <p style="font-size: 0.9em; opacity: 0.8;">Each weapon/defense module visually appears on the ship</p>
+    <div class="ship-grid" id="equipment-examples"></div>
+
+    <h2>Specific Loadout Examples</h2>
+    <p style="font-size: 0.9em; opacity: 0.8;">Testing specific equipment configurations</p>
+    <div class="ship-grid" id="specific-loadouts"></div>
+
+    <h2>Fully Loaded Ships (All Hull Types)</h2>
+    <div class="ship-grid" id="loaded-ships"></div>
+
+    <h2>Enemy Ships (By Wave)</h2>
+    <div class="ship-grid" id="enemy-ships"></div>
+
+    <h2>Combat Entities</h2>
+    <div class="ship-grid" id="combat-entities"></div>
+
+    <script src="js/ship-renderer.js"></script>
+    <script>
+        // Hull types with slot counts
+        const hullTypes = [
+            { type: 'scout', name: 'Scout', slots: 2 },
+            { type: 'fighter', name: 'Fighter', slots: 4 },
+            { type: 'corvette', name: 'Corvette', slots: 6 },
+            { type: 'destroyer', name: 'Destroyer', slots: 8 },
+            { type: 'battleship', name: 'Battleship', slots: 10 }
+        ];
+
+        // Show all hull types empty
+        const hullContainer = document.getElementById('hull-types');
+        hullTypes.forEach(hull => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            const ship = {
+                hullType: hull.type,
+                weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                hp: 100, maxHp: 100, shield: 0, maxShield: 0
+            };
+            const canvas = ShipRenderer.createShipCanvas('player', ship);
+            card.innerHTML = `<div class="label">${hull.name} Hull</div>`;
+            card.appendChild(canvas);
+            card.innerHTML += `<div style="font-size: 0.8em; margin-top: 10px; color: #0f0;">${hull.slots} Equipment Slots</div>`;
+            hullContainer.appendChild(card);
+        });
+
+        // Equipment examples on fighter hull
+        const equipmentExamples = [
+            {
+                name: '1x Laser Turret',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 1, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: '1x Missile Launcher',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 1, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: '1x Railgun',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 1, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: '1x Plasma Cannon',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 1 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: 'Shield Generator',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 1, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 100, maxShield: 100
+                }
+            },
+            {
+                name: 'Armor Plating',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 1, pointDefense: 0 },
+                    hp: 150, maxHp: 150, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: 'Point Defense',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 1 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            }
+        ];
+
+        const equipmentContainer = document.getElementById('equipment-examples');
+        equipmentExamples.forEach(config => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            const canvas = ShipRenderer.createShipCanvas('player', config.ship);
+            card.innerHTML = `<div class="label">${config.name}</div>`;
+            card.appendChild(canvas);
+            equipmentContainer.appendChild(card);
+        });
+
+        // Specific loadout examples
+        const specificLoadouts = [
+            {
+                name: 'Destroyer - 8x Laser Turrets',
+                ship: {
+                    hullType: 'destroyer',
+                    weapons: { laserTurrets: 8, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: 'Battleship - 10x Plasma Cannons',
+                ship: {
+                    hullType: 'battleship',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 10 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: 'Corvette - 6x Missile Launchers',
+                ship: {
+                    hullType: 'corvette',
+                    weapons: { laserTurrets: 0, missileLaunchers: 6, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 0, armorPlates: 0, pointDefense: 0 },
+                    hp: 100, maxHp: 100, shield: 0, maxShield: 0
+                }
+            },
+            {
+                name: 'Fighter - Full Defense',
+                ship: {
+                    hullType: 'fighter',
+                    weapons: { laserTurrets: 0, missileLaunchers: 0, railguns: 0, plasmaCannons: 0 },
+                    defense: { shieldGenerators: 2, armorPlates: 1, pointDefense: 1 },
+                    hp: 150, maxHp: 150, shield: 200, maxShield: 200
+                }
+            }
+        ];
+
+        const specificContainer = document.getElementById('specific-loadouts');
+        specificLoadouts.forEach(config => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            const canvas = ShipRenderer.createShipCanvas('player', config.ship);
+            card.innerHTML = `<div class="label">${config.name}</div>`;
+            card.appendChild(canvas);
+            specificContainer.appendChild(card);
+        });
+
+        // Fully loaded ships of each type
+        const loadedContainer = document.getElementById('loaded-ships');
+        hullTypes.forEach(hull => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            
+            // Fill all slots with mixed equipment
+            const weaponCount = Math.floor(hull.slots * 0.6);
+            const defenseCount = hull.slots - weaponCount;
+            
+            const ship = {
+                hullType: hull.type,
+                weapons: { 
+                    laserTurrets: Math.floor(weaponCount * 0.3),
+                    missileLaunchers: Math.floor(weaponCount * 0.3),
+                    railguns: Math.floor(weaponCount * 0.2),
+                    plasmaCannons: Math.floor(weaponCount * 0.2)
+                },
+                defense: { 
+                    shieldGenerators: Math.floor(defenseCount * 0.4),
+                    armorPlates: Math.floor(defenseCount * 0.4),
+                    pointDefense: Math.floor(defenseCount * 0.2)
+                },
+                hp: 100 + (hull.slots * 20), 
+                maxHp: 100 + (hull.slots * 20), 
+                shield: hull.slots * 30, 
+                maxShield: hull.slots * 30
+            };
+            
+            const canvas = ShipRenderer.createShipCanvas('player', ship);
+            card.innerHTML = `<div class="label">${hull.name} (Loaded)</div>`;
+            card.appendChild(canvas);
+            card.innerHTML += `<div style="font-size: 0.8em; margin-top: 10px;">${hull.slots}/${hull.slots} slots used</div>`;
+            loadedContainer.appendChild(card);
+        });
+
+        // Enemy wave configurations
+        const enemyWaves = [
+            { wave: 1, name: 'Scout (Wave 1-3)' },
+            { wave: 2, name: 'Scout Variant' },
+            { wave: 4, name: 'Fighter (Wave 4-6)' },
+            { wave: 5, name: 'Fighter Variant' },
+            { wave: 7, name: 'Destroyer (Wave 7-10)' },
+            { wave: 9, name: 'Destroyer Variant' },
+            { wave: 11, name: 'Battleship (Wave 11+)' },
+            { wave: 15, name: 'Battleship Variant' }
+        ];
+
+        // Combat entities
+        const combatEntities = [
+            { type: 'asteroid', data: 'small', name: 'Small Asteroid' },
+            { type: 'asteroid', data: 'medium', name: 'Medium Asteroid' },
+            { type: 'asteroid', data: 'large', name: 'Large Asteroid' },
+            { type: 'station', data: null, name: 'Space Station' },
+            { type: 'debris', data: null, name: 'Debris Field' },
+            { type: 'mine', data: null, name: 'Space Mine' }
+        ];
+
+        // Render enemy ships
+        const enemyContainer = document.getElementById('enemy-ships');
+        enemyWaves.forEach(config => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            const canvas = ShipRenderer.createShipCanvas('enemy', config.wave);
+            card.innerHTML = `<div class="label">${config.name}</div>`;
+            card.appendChild(canvas);
+            enemyContainer.appendChild(card);
+        });
+
+        // Render combat entities
+        const entitiesContainer = document.getElementById('combat-entities');
+        combatEntities.forEach(config => {
+            const card = document.createElement('div');
+            card.className = 'ship-card';
+            const canvas = ShipRenderer.createShipCanvas(config.type, config.data);
+            card.innerHTML = `<div class="label">${config.name}</div>`;
+            card.appendChild(canvas);
+            entitiesContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>

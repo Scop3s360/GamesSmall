@@ -1,0 +1,3 @@
+@echo off
+echo Opening Horde Sprint in default browser...
+start index.html
