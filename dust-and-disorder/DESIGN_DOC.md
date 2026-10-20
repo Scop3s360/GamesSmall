@@ -3,42 +3,123 @@
 ## Game Overview
 
 **Title:** Dust & Disorder  
-**Genre:** Time Management / Physics Puzzle  
+**Genre:** Comedic Chaos / Physics Sandbox  
 **Platform:** PC (Unity)  
-**Target:** Game Jam Entry (Theme: Rogue Droid)  
-**Playtime:** 10-15 minutes per playthrough
-
-### High Concept
-You are a cleaning bot who's had enough. Instead of cleaning, you're going rogue - making messes faster than your owner can clean them up. Race against the clock each day to reach 100% mess before the owner gives up and replaces you.
+**Origin:** Game Jam Entry (Theme: Rogue Droid)  
+**Status:** Revised concept. Core gameplay not yet playtested.
 
 ---
 
-## Core Gameplay Loop
+## Core Premise
 
-### Daily Cycle
-1. **Owner leaves for work** - Timer starts (e.g., 5 minutes)
-2. **Player makes messes** - Use abilities to dirty the apartment
-3. **Owner returns home** - Timer ends, day complete
-4. **Owner cleans** - Removes up to 25% of total mess
-5. **Next day begins** - Start with reduced mess percentage
+Dust & Disorder is a comedic chaos game in which a domestic cleaning robot has had enough of cleaning up after its owner and begins deliberately making a mess instead.
 
-### Win Condition
-Reach 100% mess coverage before running out of days
+The owner is struggling financially and cannot easily afford to replace the robot. However, they are working towards saving enough money to purchase a replacement, creating a time limit for the player.
 
-### Lose Condition
-- Battery runs out completely (can't reach charging base)
-- Owner gets frustrated and replaces you (too many days without progress?)
+The robot's rebellion escalates as it makes increasingly disruptive messes throughout the home, destroys household items and forces the owner to spend time and money dealing with the consequences.
 
 ---
 
-## Player Character: Cleaning Bot
+## Core Gameplay
 
-### Movement
+The player controls the rebellious cleaning robot and causes as much disruption as possible throughout the home.
+
+The player can create mess by moving, scattering and knocking over objects, spilling liquids, using its various abilities and destroying items belonging to the owner.
+
+The consequences of these actions affect the owner's time, energy and finances.
+
+---
+
+## The Owner's Finances
+
+The owner is working to earn enough money to purchase a replacement robot. The player must delay this from happening.
+
+Two key factors influence the owner's financial position:
+
+- **Lost time and energy:** The mess creates additional work for the owner, potentially reducing the time and energy available for earning money.
+- **Replacement costs:** Destroying food and household items forces the owner to spend money replacing them, delaying their ability to afford a new robot.
+
+The owner's financial situation therefore acts as a countdown towards the player's eventual replacement.
+
+---
+
+## The Escalating Rebellion
+
+Initially, the owner may believe the robot is malfunctioning. As the disruption continues, the owner eventually realises that the robot is deliberately causing the mess.
+
+Rather than the situation ending immediately, the concept allows the relationship between the owner and robot to develop into something increasingly absurd.
+
+The robot's rebellion reaches a point where the owner gives up trying to stop it and begins doing what the robot says.
+
+The central irony is that the robot was originally designed to clean the home. Through its rebellion, it ends up making the human do the cleaning instead.
+
+---
+
+## Intended Humour
+
+The comedy comes from the reversal of the normal relationship between a domestic robot and its owner.
+
+The robot begins as a household appliance expected to serve its human. As the rebellion escalates, that relationship changes, with the robot gaining control and the owner becoming increasingly subservient.
+
+The resulting situation is deliberately absurd: a cleaning robot creates work for its owner and ultimately makes the owner responsible for cleaning up after it.
+
+---
+
+## Current Design Direction
+
+The concept connects three elements:
+
+1. **Physical chaos:** The player actively creates mess and damages household items.
+2. **Economic pressure:** The owner must spend time and money dealing with the consequences while trying to save for a replacement robot.
+3. **Role reversal:** The rebellion culminates in the owner giving up resistance and obeying the robot, including doing the cleaning.
+
+---
+
+## Outstanding Design Questions
+
+The following details remain undecided. They should be resolved during further design work rather than assumed as part of the current concept.
+
+- The precise win condition and how the owner giving in is represented in gameplay.
+- How the robot communicates with the owner.
+- How the owner's time, energy and finances are calculated.
+- How the owner's response changes as the rebellion progresses.
+- The precise relationship between mess, destruction and the owner's eventual submission.
+
+Tuning questions carried over from the jam design:
+
+- Battery capacity: how long can the player operate before recharging?
+- Vacuum capacity: how many items can the vacuum hold?
+- Water capacity: how much water before needing a refill?
+- Difficulty modes: a single difficulty, or easy/normal/hard?
+
+---
+
+## Superseded by the Revised Concept
+
+The following parts of the original jam design no longer apply:
+
+- **Win condition of 100% mess coverage.** The win condition is now an open question (see above).
+- **The owner cleaning up to 25% of the mess each night.** How the owner responds is now an open question.
+- **Losing after a fixed number of days.** The time limit now comes from the owner saving for a replacement robot.
+- **The worked example playthrough** (Day 1 to Day 4 mess percentages), which was based on the rules above.
+- **The 7-day jam development schedule.**
+
+The original design also stated that the owner is never present during play and that there is no stealth. Whether and how the owner appears during play is part of the open questions about communication and the owner's response.
+
+---
+
+## Carried Over from the Jam Design
+
+The mechanics below come from the original jam design. They remain compatible with the revised concept, but they should be reviewed against it as the open questions are answered.
+
+### Player Character: Cleaning Bot
+
+#### Movement
 - **Basic Movement:** WASD or arrow keys
 - **Speed:** Moderate (drains battery slowly)
 - **Rotation:** Mouse or right stick
 
-### Controls
+#### Controls
 - **Ability Selection:** Mouse scroll wheel or number keys (1-4)
   - 1: Push/Pull
   - 2: Vacuum
@@ -55,13 +136,13 @@ Reach 100% mess coverage before running out of days
 - **Boost:** Hold Shift while using ability (drains more battery)
 - **Interact Range:** Close proximity (must be near object)
 
-### Battery System
+#### Battery System
 - **Drain Rate:**
   - Moving: Slow drain
   - Using abilities: Faster drain
   - Idle: No drain
 - **Charging:** Return to base in Front Room
-- **Empty Battery:** Game over (can't move)
+- **Empty Battery:** In the jam design, an empty battery meant game over. Whether this remains a lose condition is undecided.
 
 ### Abilities
 
@@ -90,11 +171,9 @@ Reach 100% mess coverage before running out of days
 - **Effect:** Creates puddles, spreads liquids
 - Examples: Bathroom floor, kitchen spills
 
----
+### Environment: Apartment Layout
 
-## Environment: Apartment Layout
-
-### Rooms (4 Total)
+#### Rooms (4 Total)
 
 **Front Room (Tutorial/Hub)**
 - Contains charging base
@@ -116,11 +195,9 @@ Reach 100% mess coverage before running out of days
 - Toiletries, towels
 - Medicine cabinet
 
----
+### Mess Tasks by Room
 
-## Mess Tasks by Room
-
-### Bedroom (8 Tasks)
+#### Bedroom (8 Tasks)
 1. **Knock over nightstand lamp** - Push
 2. **Pull clothes from wardrobe** - Pull door + Vacuum (collect) + Reverse (scatter)
 3. **Tip over laundry basket** - Push
@@ -130,7 +207,7 @@ Reach 100% mess coverage before running out of days
 7. **Tip over potted plant** - Push (boost for heavy)
 8. **Pull books off shelf** - Pull
 
-### Kitchen (8 Tasks)
+#### Kitchen (8 Tasks)
 1. **Knock over trash can** - Push, then Vacuum + Reverse to scatter
 2. **Open cabinets** - Pull (contents spill)
 3. **Tip over dish rack** - Push (dishes scatter)
@@ -140,7 +217,7 @@ Reach 100% mess coverage before running out of days
 7. **Spread dirty mop water** - Mop (squirt water)
 8. **Knock over pet food bowl** - Push
 
-### Bathroom (8 Tasks)
+#### Bathroom (8 Tasks)
 1. **Squirt water everywhere** - Mop (squirt)
 2. **Knock toiletries off counter** - Push
 3. **Pull towels down** - Pull
@@ -150,7 +227,7 @@ Reach 100% mess coverage before running out of days
 7. **Open medicine cabinet** - Pull (items fall)
 8. **Knock bath mat around** - Push
 
-### Front Room (8 Tasks)
+#### Front Room (8 Tasks)
 1. **Knock over coffee table items** - Push
 2. **Pull books off bookshelf** - Pull
 3. **Tip over plant pot** - Push (boost for heavy, dirt spreads)
@@ -160,86 +237,57 @@ Reach 100% mess coverage before running out of days
 7. **Tip over decorative items** - Push
 8. **Spread vacuum dust** - Vacuum + Reverse
 
----
-
-## Mess System
-
-### Mess Percentage
-- **Calculation:** (Messy area / Total cleanable area) × 100
-- **Visual Feedback:** 
-  - Clean surfaces: Bright, tidy
-  - Messy surfaces: Dirt, clutter, stains
-  - UI meter showing current %
-
 ### Mess Types
 1. **Scattered Objects** - Items on floor (clothes, trash, books)
 2. **Knocked Over Items** - Tipped furniture, spilled containers
 3. **Liquid Messes** - Water puddles, spills
 4. **Dirt/Dust** - Spread from plants, vacuum
 
-### Persistence
-- Messes stay until owner cleans (end of day)
-- Owner cleans up to 25% of mess each night
-- Strategic: Make messes in hard-to-clean areas?
+Destroying the owner's belongings (including food) is now part of the concept. Which items can be destroyed, and how this differs from ordinary mess, is not yet defined.
 
----
+### Mess Measurement
+The jam design measured mess as a percentage of the home's cleanable area, with bigger messes counting for more:
+- Small item (book): 0.5%
+- Medium item (lamp, trash): 1-2%
+- Large item (plant dirt, scattered clothes): 3-5%
 
-## Owner System
+How mess and destruction translate into lost time, energy and money for the owner is an open question.
 
-### Daily Schedule
-- **Morning:** Owner leaves (timer starts)
-- **Evening:** Owner returns (timer ends)
-- **Night:** Owner cleans up to 25% mess
+### Design Decisions
 
-### Owner Behavior
-- **Not Present:** Owner is at work during gameplay
-- **No Stealth:** Player doesn't hide or avoid owner
-- **Cleaning:** Automatic at end of day
+#### Camera
+- **Type:** Third-person isometric
+- **Behavior:** Follows player
+- **Angle:** Fixed isometric view for clear spatial awareness
 
-### Progression Pressure
-- Each day, player must make more mess than owner can clean
-- If player can't keep up, owner eventually wins
-- Creates escalating challenge
+#### Physics & Weight
+- **Light Objects:** Small items (books, lamps, bowls) - normal push
+- **Heavy Objects:** Large items (furniture, plants) - require boost
+- **Boost Mechanic:** Hold button = increase speed = more force = move heavy objects
+- **Formula:** Force = Speed × Mass
 
----
+#### Tutorial
+- **Method:** Text prompts in Front Room
+- **Style:** Learn by doing, minimal hand-holding
+- **Prompts:** "Press E to interact", "Hold Shift to boost", etc.
 
-## Game Progression
+#### Player Feedback
+- **No Highlights:** Player explores to discover interactions
+- **Discovery-Based:** Trial and error encouraged
+- **Feedback:** Sound/visual when interaction succeeds
 
-### Example Playthrough
+#### Audio Style
+- **Music:** Fun, cartoony, upbeat
+- **SFX:**
+  - Crash/break sounds for knocked items
+  - Splash for water
+  - Vacuum whoosh
+  - Satisfying "mess made" feedback
+- **Tone:** Lighthearted chaos, not serious
 
-**Day 1:**
-- Start: 0% mess
-- Player makes: 30% mess
-- Owner cleans: 25%
-- **Day 2 starts at: 5% mess**
+### Technical Requirements
 
-**Day 2:**
-- Start: 5% mess
-- Player makes: 35% more (total 40%)
-- Owner cleans: 25%
-- **Day 3 starts at: 15% mess**
-
-**Day 3:**
-- Start: 15% mess
-- Player makes: 50% more (total 65%)
-- Owner cleans: 25%
-- **Day 4 starts at: 40% mess**
-
-**Day 4:**
-- Start: 40% mess
-- Player makes: 60% more (total 100%)
-- **WIN!**
-
-### Difficulty Scaling
-- Early days: Learn mechanics, build up mess
-- Later days: Optimize routes, manage battery carefully
-- Final push: Race to 100% before owner catches up
-
----
-
-## Technical Requirements
-
-### Unity Systems Needed
+#### Unity Systems Needed
 
 **Physics:**
 - Rigidbody components on all interactive objects
@@ -254,28 +302,15 @@ Reach 100% mess coverage before running out of days
 - Interaction raycast/trigger detection
 
 **Mess Tracking:**
-- Area coverage calculation
 - Visual state changes (clean → messy)
-- Percentage tracking and display
-
-**Game Manager:**
-- Day/night cycle timer
-- Mess percentage tracking
-- Win/lose condition checking
-- Owner cleaning logic
+- Tracking of mess and destroyed items
 
 **UI:**
 - Battery meter
-- Mess percentage meter
-- Day counter
-- Timer display
+- Mess indicator
 - Win/lose screens
 
----
-
-## Art & Audio (Placeholder for Jam)
-
-### Visual Style
+### Art & Audio
 - **Prototype:** Simple shapes (cubes, spheres)
 - **Final:** Low-poly 3D models
 - **Color Coding:**
@@ -283,112 +318,17 @@ Reach 100% mess coverage before running out of days
   - Clean areas: Bright, organized
   - Messy areas: Dark, cluttered
 
-### Audio (Optional for Jam)
-- Movement sounds (wheels, motors)
-- Interaction sounds (crash, splash, vacuum)
-- UI feedback sounds
-- Ambient apartment sounds
-
 ---
 
-## Development Phases
-
-### Phase 1: Prototype (Day 1-2)
-- [ ] Player movement controller
-- [ ] One pushable object with physics
-- [ ] Battery system (drain + recharge)
-- [ ] Basic mess tracking (simple %)
-- [ ] One room layout (Front Room)
-
-### Phase 2: Core Mechanics (Day 3-4)
-- [ ] All four abilities working (push, pull, vacuum, mop)
-- [ ] Vacuum collect/scatter system
-- [ ] Water squirt mechanic
-- [ ] All four rooms built (greybox)
-- [ ] Day/night cycle timer
-
-### Phase 3: Content (Day 5-6)
-- [ ] All 32 mess tasks implemented
-- [ ] Owner cleaning logic
-- [ ] Win/lose conditions
-- [ ] UI (battery, mess %, timer, day counter)
-- [ ] Visual feedback for messes
-
-### Phase 4: Polish (Day 7)
-- [ ] Playtesting and balancing
-- [ ] Bug fixes
-- [ ] Sound effects (if time)
-- [ ] Tutorial prompts
-- [ ] Build and submit
-
----
-
-## Design Decisions
-
-### Camera
-- **Type:** Third-person isometric
-- **Behavior:** Follows player
-- **Angle:** Fixed isometric view for clear spatial awareness
-
-### Physics & Weight
-- **Light Objects:** Small items (books, lamps, bowls) - normal push
-- **Heavy Objects:** Large items (furniture, plants) - require boost
-- **Boost Mechanic:** Hold button = increase speed = more force = move heavy objects
-- **Formula:** Force = Speed × Mass
-
-### Mess Scoring
-- **Size-Based:** Bigger messes count more toward percentage
-  - Small item (book): 0.5%
-  - Medium item (lamp, trash): 1-2%
-  - Large item (plant dirt, scattered clothes): 3-5%
-- **Total:** 32 tasks across 4 rooms = 100% possible
-
-### Tutorial
-- **Method:** Text prompts in Front Room
-- **Style:** Learn by doing, minimal hand-holding
-- **Prompts:** "Press E to interact", "Hold Shift to boost", etc.
-
-### Player Feedback
-- **No Highlights:** Player explores to discover interactions
-- **Discovery-Based:** Trial and error encouraged
-- **Feedback:** Sound/visual when interaction succeeds
-
-### Restart System
-- **Day Restart:** Player can restart current day if needed
-- **Auto-Save:** Game saves at start of each day
-- **No Mid-Day Save:** Commit to full day or restart
-
-### Audio Style
-- **Music:** Fun, cartoony, upbeat
-- **SFX:** 
-  - Crash/break sounds for knocked items
-  - Splash for water
-  - Vacuum whoosh
-  - Satisfying "mess made" feedback
-- **Tone:** Lighthearted chaos, not serious
-
-## Open Questions / To Decide
-
-1. **Timer Length:** How long is each day? (3 min? 5 min?)
-2. **Battery Capacity:** How long can player operate before recharging?
-3. **Vacuum Capacity:** How many items can vacuum hold?
-4. **Water Capacity:** How much water before needing refill?
-5. **Owner Cleaning:** Always 25%, or does it vary?
-6. **Lose Condition:** Just battery death, or also "owner gives up" after X days?
-7. **Difficulty Modes:** Single difficulty, or easy/normal/hard?
-
----
-
-## Success Metrics (Post-Jam)
+## Success Metrics
 
 - Players understand mechanics within first minute
-- Players reach 100% mess within 4-6 days (balanced difficulty)
 - Core loop feels satisfying (making mess is fun)
 - Physics interactions feel good (not too floaty/heavy)
 - Battery management adds tension without frustration
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** February 3, 2026  
-**Status:** Pre-Production
+**Document Version:** 2.0  
+**Last Updated:** October 19, 2026  
+**Status:** Revised concept
